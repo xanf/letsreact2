@@ -6,12 +6,14 @@ import auth from './auth';
 import counter from './counter';
 import {reducer as form} from 'redux-form';
 import info from './info';
+import rating from './rating';
 import widgets from './widgets';
 
 export default combineReducers({
   router: routerStateReducer,
   auth,
   form,
+  rating,
   counter: counter,
   multireducer: multireducer({
     counter1: counter,

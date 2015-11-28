@@ -4,6 +4,10 @@ import config from '../config';
 const methods = ['get', 'post', 'put', 'patch', 'del'];
 
 function formatUrl(path) {
+  if (path.match(/^http/)) {
+    console.log('ok');
+    return path;
+  }
   const adjustedPath = path[0] !== '/' ? '/' + path : path;
   if (__SERVER__) {
     // Prepend host and port of the API server to the path.
@@ -24,6 +28,7 @@ class _ApiClient {
     methods.forEach((method) =>
       this[method] = (path, { params, data } = {}) => new Promise((resolve, reject) => {
         const request = superagent[method](formatUrl(path));
+        console.log(formatUrl(path));
 
         if (params) {
           request.query(params);
